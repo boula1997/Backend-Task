@@ -23,26 +23,26 @@
                     <tr>
                         <th>No</th>
                         <th>Name</th>
-                        <th>description</th>
-                        <th>Price</th>
-                        <th>Date Created</th>
+                        <th>Type</th>
+                        <th>Email</th>
+                        <th>Date Joined</th>
                         <th>Actions</th>
                     </tr>
-                    @foreach ($products as $product)
+                    @foreach ($users as $user)
                         <tr>
                             <td>#{{$loop->iteration}}</td>
-                            <td>{{$product->name}}</td>
-                            <td>{{$product->description}}</td>
-                            <td>{{$product->price}}</td>
-                            <td>{{$product->created_at}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->is_admin==0?"Employee":"Admin"}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->created_at}}</td>
                             <td>
-                                <form action="{{route('products.destroy',$product)}}" method="POST">
+                                <form action="{{route('users.destroy',$user)}}" method="POST">
             
-                                    <a href="{{route('products.show',$product)}}" title="show">
+                                    <a href="{{route('users.show',$user)}}" title="show">
                                         <i class="fas fa-eye text-success  fa-lg"></i>
                                     </a>
             
-                                    <a href="{{route('products.edit',$product)}}" title="edit">
+                                    <a href="{{route('users.edit',$user)}}" title="edit">
                                         <i class="fas fa-edit  fa-lg"></i>
                                     </a>
             
