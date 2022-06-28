@@ -14,9 +14,18 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('You are logged in as') }} {{Auth::user()->is_admin==0?"Employee!":"Admin!"}}
                 </div>
+
+
             </div>
+            @if (Auth::user()->is_admin)
+
+            <div class="pull-right">
+                <a class="btn btn-success" href="{{route('users.create')}}" title="Create a product"> <i class="fas fa-plus-circle"></i>
+                    </a>
+            </div>
+
 
             <div>
                 <table class="table table-bordered table-responsive-lg">
@@ -29,6 +38,8 @@
                         <th>Actions</th>
                     </tr>
                     @foreach ($users as $user)
+                    @if ($user->id!=Auth::user()->is_admin)
+                        
                         <tr>
                             <td>#{{$loop->iteration}}</td>
                             <td>{{$user->name}}</td>
@@ -55,9 +66,11 @@
                                 </form>
                             </td>
                         </tr>
+                        @endif
                     @endforeach
                 </table>
             </div>
+            @endif
         </div>
     </div>
 </div>
